@@ -50,6 +50,6 @@ class PostgresLoader(Loader):
         self.insert_data()
 
     def insert_data(self):
-        logger.debug(f'have started insert data to article-table')
-        self.cur.executemany("insert into article values(%s,%s,%s,%s)", self.new_objects)
-        logger.debug(f'have done insert')
+        logger.debug('have started insert data to article-table')
+        self.cur.executemany('insert into article values(%s,%s,%s,%s)', self.new_objects)
+        logger.debug('have done insert')
