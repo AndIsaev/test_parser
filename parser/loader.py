@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod
 
 
 class Loader(ABC):
-
     @abstractmethod
     def request_to_resource(self):
         pass

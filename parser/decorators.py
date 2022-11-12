@@ -30,5 +30,7 @@ def retry(timeout=60, attempt=3):
                     logger.error(f'Sleep: {timeout} seconds')
                     time.sleep(timeout)
                     attempts += 1
+
         return wrapper
+
     return the_real_decorator
