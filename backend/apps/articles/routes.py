@@ -12,7 +12,26 @@ articles_api = Blueprint('article_route', __name__, url_prefix=f'{BASE_ROUTE}/ar
 
 
 @articles_api.route('/', methods=['GET'])
-def get_information():
+def get_all_articles():
+    """Endpoint to get all articles.
+        ---
+        get:
+          description: Get all articles
+          tags:
+            - Articles
+          responses:
+            200:
+              description: Successfully got all articles
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          ArticleSchema
+        """
     now = datetime.datetime.now().date()
     four_days = datetime.timedelta(days=4)
 
