@@ -1,5 +1,8 @@
 # test_parser
-
+## To run project locally:
+```shell
+docker-compose up -d --build
+```
 Server will be available at the localhost:
  - `localhost:5000`
  - `localhost:5000/api/docs/` - SWAGGER UI
