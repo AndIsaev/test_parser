@@ -28,7 +28,7 @@ services:
   parser:
     container_name: parser
     build:
-      context: ./backend/apps/parser/
+      context: ./parser/
       dockerfile: Dockerfile
     ports:
       - "8020:8020"

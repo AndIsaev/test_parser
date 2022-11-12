@@ -1,5 +1,11 @@
 # test_parser
 
+Server will be available at the localhost:
+ - `localhost:5000`
+ - `localhost:5000/api/docs/` - SWAGGER UI
+ - `http://localhost:5000/api/article` - get all articles
+
+
 ## Run migrations:
 
 ### initial db
