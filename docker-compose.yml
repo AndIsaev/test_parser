@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  web:
+    build: .
+    container_name: backend
+    volumes:
+      - .:/src/app/
+    command: ["sh", "./entrypoint.sh"]
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+#    restart: always
+
+  db:
+    image: postgres:13-alpine3.15
+    container_name: backend_db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=super
+      - POSTGRES_DB=backend
+    ports:
+      - "54320:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  parser:
+    container_name: parser
+    build:
+      context: ./parser/
+      dockerfile: Dockerfile
+    ports:
+      - "8020:8020"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
