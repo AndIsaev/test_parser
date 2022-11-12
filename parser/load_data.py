@@ -1,9 +1,11 @@
 import psycopg2
 
-from config import dsn
+from config import dsn, TIME
+from decorators import sleep
 from postgres_loader import PostgresLoader
 
 
+@sleep(TIME)
 def save_data_to_db():
     with psycopg2.connect(**dsn) as conn:
         cursor = conn.cursor()

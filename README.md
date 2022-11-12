@@ -11,7 +11,7 @@ Server will be available at the localhost:
 
 ## Run migrations:
 
-### initial db
+### initial db for developing
 
 ```shell
 make init db
