@@ -18,8 +18,7 @@ def get_information():
 
     with DbSession(read_only=True) as db_session:
         articles = (
-            db_session.query(Article)
-            .where(
+            db_session.query(Article).where(
                 and_(
                     Article.date_of_published == now,
                     Article.date_of_published >= now - four_days,

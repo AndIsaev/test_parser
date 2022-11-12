@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Text, Date
+from sqlalchemy import Column, Date, Text
 
 from backend.db import BaseModel
 
@@ -9,10 +9,3 @@ class Article(BaseModel):
     title = Column(Text)
     url_img = Column(Text)
     date_of_published = Column(Date)
-    #
-    # def __repr__(self) -> str:
-    #     return f'Article: {self.title[:30]}'
-    #
-    # def __str__(self) -> str:
-    #     return f'{self.name[:30]}'
-

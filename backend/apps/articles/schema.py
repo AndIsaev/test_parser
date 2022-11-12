@@ -8,7 +8,6 @@ db_session = DbSession()
 
 
 class ArticleSchema(BaseSchemaMixin, SQLAlchemyAutoSchema):
-
     class Meta:
         model = Article
         load_instance = True

@@ -2,13 +2,9 @@ from datetime import datetime
 
 import requests as requests
 from bs4 import BeautifulSoup as bs
-
+from config import TIME, URL_IMAGE, URL_TEMPLATE
 from decorators import sleep
 from logs.settings import logger
-
-URL_TEMPLATE = 'http://mosday.ru/news/tags.php?metro'
-URL_IMAGE = 'https://mosday.ru/news/'
-TIME = 600
 
 
 class PostgresLoader:
@@ -54,7 +50,3 @@ class PostgresLoader:
         logger.debug(f'have started insert data to article-table')
         self.cur.executemany("insert into article values(%s,%s,%s,%s)", self.new_objects)
         logger.debug(f'have done insert')
-
-
-
-

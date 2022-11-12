@@ -1,15 +1,7 @@
 import psycopg2
 
+from config import dsn
 from postgres_loader import PostgresLoader
-
-
-dsn = {
-    "dbname": 'backend',
-    "user": 'postgres',
-    "password": 'super',
-    "host": 'db',
-    "port": 5432
-}
 
 
 def save_data_to_db():

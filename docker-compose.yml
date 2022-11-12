@@ -6,7 +6,7 @@ services:
     container_name: backend
     volumes:
       - .:/src/app/
-    command: flask --app backend.app run --host=0.0.0.0 --reload
+    command: ["sh", "./entrypoint.sh"]
     ports:
       - "5000:5000"
     depends_on:
