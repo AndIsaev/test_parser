@@ -2,12 +2,13 @@ from datetime import datetime
 
 import requests as requests
 from bs4 import BeautifulSoup as bs
-from config import TIME, URL_IMAGE, URL_TEMPLATE
-from decorators import sleep
+from config import URL_IMAGE, URL_TEMPLATE
 from logs.settings import logger
+from loader import Loader
+from decorators import retry
 
 
-class PostgresLoader:
+class PostgresLoader(Loader):
     def __init__(self, cur):
         self.cur = cur
         self.new_objects = []
@@ -21,12 +22,14 @@ class PostgresLoader:
 
         return last_id[0] if last_id else 0
 
-    @sleep(TIME)
-    def parsing_data(self):
+    @retry()
+    def request_to_resource(self):
+        logger.debug('request to resource')
         html = requests.get(URL_TEMPLATE).text
-        logger.debug('do request to site')
+        return bs(html, "html.parser")
 
-        soup = bs(html, "html.parser")
+    def parsing_data(self):
+        soup = self.request_to_resource()
         table = soup.find_all('table')[2]
         tr = table.find('tr')
 
@@ -47,6 +50,6 @@ class PostgresLoader:
         self.insert_data()
 
     def insert_data(self):
-        logger.debug(f'have started insert data to article-table')
-        self.cur.executemany("insert into article values(%s,%s,%s,%s)", self.new_objects)
-        logger.debug(f'have done insert')
+        logger.debug('have started insert data to article-table')
+        self.cur.executemany('insert into article values(%s,%s,%s,%s)', self.new_objects)
+        logger.debug('have done insert')
